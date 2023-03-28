@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>NetFlix</title>
+
+    <link rel="shortcut icon" href="images/film.png" type="image/png" />
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/slide.css" />
+  </head>
+
+  <body>
+    <!-- This is a template HTML for a post item -->
+    <template id="postItemTemplate">
+      <li class="col-12 col-md-6 col-lg-4">
+        <div class="post-item mb-4">
+          <div class="card">
+            <img data-id="thumbnail" src="./images/logo.png" class="card-img-top" alt="recipe" />
+
+            <div class="card-body">
+              <h5 data-id="title" class="card-title">Card title</h5>
+
+              <p data-id="description" class="card-text">
+                This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.
+              </p>
+
+              <p class="card-text">
+                <small class="text-muted">by</small>
+                <small data-id="author" class="text-muted font-weight-bold"> Hau Nguyen </small>
+                <small data-id="timeSpan" class="text-muted"> - 3 mins ago </small>
+              </p>
+            </div>
+          </div>
+
+          <div class="post-item-menu">
+            <div data-id="edit" class="menu-item rounded-circle" role="button">
+              <i class="fas fa-pen"></i>
+            </div>
+            <div data-id="remove" class="remove-button menu-item rounded-circle" role="button">
+              <i class="fas fa-trash"></i>
+            </div>
+          </div>
+        </div>
+      </li>
+    </template>
+
+    <!-- Navigation
+      - Please note that we use an empty item to make sure that we always have 3 flex-items
+        so logo is at centered, and the left and the right item can be optional by leaving it empty
+    --><!-- Navbar -->
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Navbar brand -->
+          <a class="navbar-brand mt-2 mt-lg-0" href="#">
+            <img
+              style="width: 115px; height: 50px"
+              src="./images/netflix.jpg"
+              height="15"
+              alt="MDB Logo"
+              loading="lazy"
+            />
+          </a>
+          <!-- Left links -->
+          <ul id="list-menu" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="./phimbo.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tv Shows</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Recently Added</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">My List</a>
+            </li>
+          </ul>
+          <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+          <div style="margin-right: 30px" class="input-group">
+            <div class="form-outline">
+              <input type="search" id="form1" class="form-control" />
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+          <!-- Notifications -->
+          <div class="dropdown">
+            <a
+              class="text-reset me-3 dropdown-toggle hidden-arrow"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-bell"></i>
+              <span class="badge rounded-pill badge-notification bg-danger">1</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="#">Some news</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Another news</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Avatar -->
+          <div class="dropdown">
+            <a
+              class="dropdown-toggle d-flex align-items-center hidden-arrow"
+              href="#"
+              id="navbarDropdownMenuAvatar"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                class="rounded-circle"
+                height="25"
+                alt="Black and White Portrait of a Man"
+                loading="lazy"
+              />
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+              <li>
+                <a class="dropdown-item" href="#">My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Settings</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Right elements -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+
+    <!-- Swiper -->
+    <div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            style="width: 100px; height: 500px; object-fit: cover"
+            src="./images/Poster/poster_1.jpg"
+            class="d-block w-100"
+            alt="Wild Landscape"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            style="height: 500px; object-fit: cover"
+            src="./images/Poster/poster_2.jpg"
+            class="d-block w-100"
+            alt="Camera"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            style="height: 500px; object-fit: cover"
+            src="./images/Poster/ps_3.jpg"
+            class="d-block w-100"
+            alt="Exotic Fruits"
+          />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-mdb-target="#carouselExampleControls"
+        data-mdb-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-mdb-target="#carouselExampleControls"
+        data-mdb-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <main>
+      <section class="posts-section">
+        <div class="container">
+          <h1 class="with-underline text-center">Latest posts</h1>
+
+          <!-- Posts list -->
+          <ul id="postsList" class="row posts-list justify-content-center">
+            <li class="col-12 col-md-6 col-lg-4">
+              <div class="post-item mb-4">
+                <div class="card">
+                  <img
+                    src="images/recipe.jpg"
+                    class="card-img-top"
+                    alt="recipe"
+                    onerror="this.onerror=null;this.src='https://picsum.photos/1368/400';"
+                  />
+
+                  <div class="card-body">
+                    <h5 class="card-title">The Hobbit</h5>
+
+                    <p class="card-text"></p>
+
+                    <p class="card-text">
+                      <small class="text-muted">by</small>
+                      <small class="text-muted font-weight-bold">Hau Nguyen</small>
+                      <small class="text-muted">- 3 mins ago</small>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="post-item-menu">
+                  <div class="menu-item rounded-circle">
+                    <i class="fas fa-pen"></i>
+                  </div>
+                  <div class="menu-item rounded-circle">
+                    <i class="fas fa-trash"></i>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Posts pagination -->
+          <nav class="posts-nav" aria-label="Posts navigation">
+            <ul hidden id="postsPagination" class="pagination justify-content-center">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center text-muted py-3">
+      <small>Created by Po with <i class="fas fa-heart"></i></small>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Scripts should be placed here to prevent blocking render UI -->
+    <script type="module" src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
